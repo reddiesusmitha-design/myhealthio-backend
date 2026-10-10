@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const medications_controller_1 = require("../controllers/medications.controller");
+const router = (0, express_1.Router)();
+router.use(auth_1.authenticate);
+router.get('/alarms', medications_controller_1.listMedicationAlarms);
+router.post('/alarms', medications_controller_1.createMedicationAlarm);
+router.patch('/alarms/:id/take', medications_controller_1.logDoseIntake);
+router.put('/alarms/:id', medications_controller_1.updateMedicationAlarm);
+router.delete('/alarms/:id', medications_controller_1.deleteMedicationAlarm);
+exports.default = router;

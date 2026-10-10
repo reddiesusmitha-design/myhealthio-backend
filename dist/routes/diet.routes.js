@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const diet_controller_1 = require("../controllers/diet.controller");
+const router = (0, express_1.Router)();
+router.use(auth_1.authenticate);
+router.get('/', diet_controller_1.getDietMenu);
+router.post('/water', diet_controller_1.logWaterIntake);
+router.put('/plan', diet_controller_1.updateDietPlan);
+exports.default = router;
